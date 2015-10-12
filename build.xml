@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="proyecto1" default="proyecto1.jar" basedir="." >
+<project name="proyecto2" default="proyecto2.jar" basedir="." >
 
   <property name="build.dir" value="build" />
   <property name="src.dir"   value="src" />
   <property name="lib.dir"   value="lib" />
   <property name="doc.dir"   value="doc" />
+  <property name="resources.dir"   value="resources"/>
 
-  <target name="proyecto1.jar" depends="compile.proyecto1">
-    <jar jarfile="proyecto1.jar">
+  <target name="proyecto2.jar" depends="compile.proyecto2">
+    <jar jarfile="proyecto2.jar">
       <zipfileset dir="${build.dir}" prefix="" />
+      <fileset dir="${resources.dir}" />
       <manifest>
-        <attribute name="Main-Class" value="mx.unam.ciencias.myp.Proyecto1"/>
+        <attribute name="Main-Class" value="mx.unam.ciencias.myp.Proyecto2"/>
+        <attribute name="Class-Path" value="lib/sqlite-jdbc-3.8.11.2.jar"/>
       </manifest>
     </jar>
   </target>
 
-  <target name="compile.proyecto1">
+  <target name="compile.proyecto2">
     <mkdir dir="${build.dir}"/>
     <javac srcdir="${src.dir}"
            destdir="${build.dir}"
@@ -33,7 +36,7 @@
     </javac>
   </target>
 
-  <target name="doc" depends="proyecto1.jar">
+  <target name="doc" depends="proyecto2.jar">
     <mkdir dir="${doc.dir}"/>
     <javadoc packagenames="mx.unam.ciencias.myp.*"
              sourcepath="src"
@@ -49,23 +52,25 @@
       <classpath>
         <pathelement location="${lib.dir}/junit.jar" />
         <pathelement location="${lib.dir}/hamcrest-core.jar" />
+        <pathelement location="${lib.dir}/sqlite-jdbc-3.8.11.2.jar" />
       </classpath>
     </javadoc>
   </target>
 
   <target name="clean">
-    <delete file="proyecto1.jar"/>
+    <delete file="proyecto2.jar"/>
     <delete dir="${build.dir}"/>
     <delete dir="${doc.dir}"/>
   </target>
 
-  <target name="test" depends="proyecto1.jar">
+  <target name="test" depends="proyecto2.jar">
     <junit printsummary="yes" haltonfailure="no">
       <formatter type="plain" usefile="false" />
       <classpath>
         <pathelement path="${build.dir}" />
         <pathelement location="${lib.dir}/junit.jar" />
         <pathelement location="${lib.dir}/hamcrest-core.jar" />
+        <pathelement location="${lib.dir}/sqlite-jdbc-3.8.11.2.jar" />
       </classpath>
       <batchtest fork="yes">
         <fileset dir="${src.dir}">
