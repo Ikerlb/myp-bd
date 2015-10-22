@@ -6,11 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Operaciones{
+public class Operaciones extends Thread{
 
     private Connection conexion;
     private Statement sm;
     private ResultSet rs;
+    private String instruccion;
+    private Boolean update;
 
     public Operaciones(){
         try{
@@ -21,8 +23,37 @@ public class Operaciones{
         catch(Exception e){System.out.println(e);}
     }
 
-    public ResultSet buscaRapida(){
-        return null;
+
+    public void setInstruccion(String instruccion){
+        this.instruccion=instruccion;
+    }
+
+
+    @Override public void run(){
+        try{
+            if(update)
+                sm.executeUpdate(instruccion);
+            else
+                sm.executeQuery(instruccion);
+        }catch(Exception e){System.out.println(e);}
+        finally{
+            try{
+                sm.closeOnCompletion();
+            }catch(Exception e){System.out.println(e);}
+        }
+    }
+
+    public ResultSet query(String instruccion){
+        this.instruccion=instruccion;
+        start();
+        return rs;
+    }
+
+    public void agrega(String instruccion){
+        this.instruccion=instruccion;
+        update=true;
+        start();
+        update=false;
     }
 
     public void cerrarConexion(){

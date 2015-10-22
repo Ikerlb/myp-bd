@@ -10,18 +10,20 @@ public class Proyecto2 extends Application{
 
     private Controlador controller;
 
-    public void start(Stage primaryStage) throws Exception{
+    @Override public void start(Stage primaryStage) throws Exception{
         ClassLoader cl=getClass().getClassLoader();
-        //Parent root=FXMLLoader.load(cl.getResource("sbhome.fxml"));
         FXMLLoader loader = new FXMLLoader(cl.getResource("sbhome.fxml"));
         Parent root = (Parent) loader.load();
         controller = loader.getController();
+        //controller.startThread();
+        //controller.busquedaRapida();
         primaryStage.setTitle("Proyecto2");
         primaryStage.setScene(new Scene(root,800,500));
         primaryStage.show();
     }
 
-    public void stop(){
+    @Override public void stop(){
+        /*Cerramos la conexion a la base de datos antes de que se cierre el programa*/
         controller.cerrarConexion();
         //System.out.println("Closing");
     }
