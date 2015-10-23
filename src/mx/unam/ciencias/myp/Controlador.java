@@ -17,8 +17,6 @@ import javafx.scene.control.ComboBox;
 
 public class Controlador {
 
-    private Operaciones op=new Operaciones();
-
     @FXML private Button btn1; //busqueda rapida
     @FXML private Button btn2; //abrir busqueda avanzada
     @FXML private Button doQuerry2; //boton para buscar dentro de la busqueda avanzada
@@ -38,13 +36,9 @@ public class Controlador {
     }
 
     public void manejaBotonCerrar(){
-        op.cerrarConexion();
         Platform.exit();
     }
 
-    public void cerrarConexion(){
-        op.cerrarConexion();
-    }
 
     public void abrirBusquedaAvanzada() throws Exception{
         Stage stage=new Stage();
@@ -85,10 +79,12 @@ public class Controlador {
         }
     }
 
+
     public void abrirAgrega() throws Exception{
         Stage stage=new Stage();
         ClassLoader cl=getClass().getClassLoader();
-        Parent root=FXMLLoader.load(cl.getResource("sbagregar.fxml"));
+        FXMLLoader loader = new FXMLLoader(cl.getResource("sbagregar.fxml"));
+        Parent root = (Parent) loader.load();
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(addOpen.getScene().getWindow());
@@ -96,5 +92,6 @@ public class Controlador {
         stage.setTitle("Agregar");
         stage.showAndWait();
     }
+
 
 }

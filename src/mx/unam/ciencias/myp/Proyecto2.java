@@ -15,17 +15,9 @@ public class Proyecto2 extends Application{
         FXMLLoader loader = new FXMLLoader(cl.getResource("sbhome.fxml"));
         Parent root = (Parent) loader.load();
         controller = loader.getController();
-        //controller.startThread();
-        //controller.busquedaRapida();
         primaryStage.setTitle("Proyecto2");
         primaryStage.setScene(new Scene(root,800,500));
         primaryStage.show();
-    }
-
-    @Override public void stop(){
-        /*Cerramos la conexion a la base de datos antes de que se cierre el programa*/
-        controller.cerrarConexion();
-        //System.out.println("Closing");
     }
 
     public static void main(String[] args){
