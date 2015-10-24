@@ -27,6 +27,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 
+/** Controlador para agregar equipos/jugadores.
+  * maneja todos los eventos que ocurren al agregar
+  * @author Iker Lissarrague
+  * @version 1
+  */
 public class ControladorAgrega{
 
     //PESTANIA AGREGAR JUGADOR
@@ -61,6 +66,11 @@ public class ControladorAgrega{
         getPaises();
     }
 
+        /**
+     * Metodo onDragEnteredJugador
+     * Maneja el evento de arrastrar una imagen de un jugador
+     *
+     */
     public void onDragEnteredJugador(DragEvent e){
         final Dragboard db = e.getDragboard();
         if(db.hasFiles()&&(db.getFiles().get(0).getName().toLowerCase().endsWith(".png")
@@ -90,15 +100,30 @@ public class ControladorAgrega{
         stackPane2.setStyle("-fx-border-color: #00FF00;");
     }
 
-
+    /**
+    * Metodo onDragExitedJugador
+    * Maneja el evento despues de agregar una imagen de un jugador
+    *
+    */
     public void onDragExitedJugador(){
         stackPane1.setStyle("-fx-border-color: #000000;");
     }
 
+    /**
+    * Metodo onDragExitedJugador
+    * Maneja el evento despues de agregar una imagen de un equipo
+    *
+    */
     public void onDragExitedEquipo(){
         stackPane2.setStyle("-fx-border-color: #000000;");
     }
 
+
+    /**
+    * Metodo onDragEnteredJugador
+    * Maneja el evento para agregar una imagen arrastrada de un equipo
+    *
+    */
     public void onDragEnteredEquipo(DragEvent e){
         final Dragboard db = e.getDragboard();
         if(db.hasFiles()&&(db.getFiles().get(0).getName().toLowerCase().endsWith(".png")
@@ -194,6 +219,11 @@ public class ControladorAgrega{
         alert.showAndWait();
     }
 
+    /**
+    * Metodo agregarTrofeos
+    * Maneja el evento de agregar un trofeo a la lista de trofeos ganados por un equipo
+    *
+    */
     public void agregarTrofeos(){
         String s=comboTrofeos.getValue();
         ObservableList<String> names;
@@ -206,6 +236,11 @@ public class ControladorAgrega{
         comboTrofeos.setValue(null);
     }
 
+    /**
+    * Metodo agregarEquiposALista
+    * Maneja el evento de agregar un equipo en el que un jugador ha jugado
+    *
+    */
     public void agregarEquiposALista(){
         String s=comboAgregarEquipo.getValue();
         ObservableList<String> names;
@@ -218,6 +253,12 @@ public class ControladorAgrega{
         comboAgregarEquipo.setValue(null);
     }
 
+    /**
+    * Metodo agregarJugador
+    * Maneja el evento de agregar un jugador a la base de datos
+    *
+    *@throws error en la conexion de la base de datos
+    */
     public void agregarJugador() throws Exception{
          boolean exito=false;
          if(!nombreJugador.getText().trim().equals("")&&datePickerEquipo.getText()!=null
@@ -238,6 +279,12 @@ public class ControladorAgrega{
             mensajeErrorEntradaVacia();
     }
 
+    /**
+    * Metodo agregarTrofeos
+    * Maneja el evento de agregar un equipos a la base de datos
+    *
+    @throws error en la conexion con la base de datos
+    */
     public void agregarEquipo() throws Exception{
          boolean exito=false;
          if(!nombreEquipo.getText().trim().equals("")&&datePickerEquipo.getText()!=null

@@ -27,6 +27,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 
+/** Controlador para el flujo de el programa.
+  * maneja todos los eventos que ocurren en la pantalla inicial
+  * @author Iker Lissarrague
+  * @version 1
+  */
 public class Controlador {
 
     @FXML private Button btn1; //busqueda rapida
@@ -46,11 +51,21 @@ public class Controlador {
         alert.showAndWait();
     }
 
+        /**
+     * Metodo manejaBotonCerrar
+     * Cierra la interfaz grafica con el boton de cerrar en File
+     *
+     */
     public void manejaBotonCerrar(){
         Platform.exit();
     }
 
-
+    /**
+    * Metodo abrirVentanaResultados
+    * Abre ventana en donde se muestran resultados de la busqueda
+    *
+    *@throws error en la conexion con la base de datos o error al abrir fxml
+    */
     public void abrirVentanaResultados() throws Exception{
         if(tf1.getText().trim().equals("")){
             mensajeErrorEntradaVacia();
@@ -77,9 +92,21 @@ public class Controlador {
                 VBox vbox=new VBox();
                 for(Jugador j:busquedaRapida)
                     llenaPane(new TitledPane(),j,vbox);
+                stage.showAndWait();
             }
-            stage.showAndWait();
+            else{
+                mensajeError();
+                stage.close();
+            }
         }
+    }
+
+    private void mensajeError(){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Error");
+        alert.setHeaderText("Error al hacer consulta");
+        alert.setContentText("No hay ningun resultado con tu busqueda");
+        alert.showAndWait();
     }
 
     private void llenaPane(TitledPane tp,Jugador jug,VBox v){
@@ -105,6 +132,12 @@ public class Controlador {
         scrollPane.setContent(v);
     }
 
+    /**
+    * Metodo abrirAgrega
+    * Abre una ventana para agregar jugadores y equipos
+    *
+    *@throws error conexion con el fxml
+    */
     public void abrirAgrega() throws Exception{
         Stage stage=new Stage();
         ClassLoader cl=getClass().getClassLoader();

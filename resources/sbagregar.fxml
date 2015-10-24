@@ -20,7 +20,7 @@
                   </StackPane>
                   <TextField fx:id="nombreJugador" layoutX="263.0" layoutY="44.0" prefHeight="20.0" prefWidth="300.0" />
                   <Label layoutX="356.0" layoutY="29.0" text="Nombre del jugador" />
-                  <Label layoutX="352.0" layoutY="114.0" text="Fecha de Nacimiento" />
+                  <Label layoutX="352.0" layoutY="114.0" text="Año de Nacimiento" />
                   <ComboBox fx:id="comboPais" layoutX="234.0" layoutY="237.0" prefHeight="25.0" prefWidth="170.0" promptText="..." />
                   <ComboBox fx:id="comboPosicion" layoutX="422.0" layoutY="237.0" prefHeight="25.0" prefWidth="170.0" promptText="..." />
                   <Label layoutX="301.0" layoutY="222.0" text="Pais" />
@@ -40,7 +40,7 @@
                   <ComboBox fx:id="comboEquipoActual" layoutX="313.0" layoutY="353.0" prefHeight="25.0" prefWidth="200.0" promptText="..." />
                   <Button fx:id="botonAgregarJugador" layoutX="509.0" layoutY="428.0" mnemonicParsing="false" onAction="#agregarJugador" text="Agregar Jugador" />
                   <ListView fx:id="columnaEquipos" layoutX="14.0" layoutY="249.0" prefHeight="177.0" prefWidth="200.0" />
-                  <TextField fx:id="datePickerJugador" layoutX="266.0" layoutY="129.0" prefHeight="25.0" prefWidth="305.0" promptText="dd/mm/aaaa" />
+                  <TextField fx:id="datePickerJugador" layoutX="346.0" layoutY="129.0" prefHeight="25.0" prefWidth="153.0" promptText="aaaa" />
                </children></AnchorPane>
       </content>
     </Tab>

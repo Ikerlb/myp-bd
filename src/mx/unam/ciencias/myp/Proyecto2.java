@@ -6,10 +6,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
+/** Inicializar vista.
+  * Inicializa la vista del programa.
+  * @author Iker Lissarrague
+  * @version 1
+  */
 public class Proyecto2 extends Application{
 
     private Controlador controller;
 
+    /** Metodo start.
+      * @param Stage inicial.
+      * @throws error abriendo un fxml
+      */
     @Override public void start(Stage primaryStage) throws Exception{
         ClassLoader cl=getClass().getClassLoader();
         FXMLLoader loader = new FXMLLoader(cl.getResource("sbhome.fxml"));
