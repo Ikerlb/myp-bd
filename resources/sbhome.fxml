@@ -76,8 +76,6 @@
             <VBox prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
                   <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                  <Label alignment="CENTER" prefHeight="15.0" prefWidth="169.0" text="O prueba nuestra:" textFill="#bfb8b8" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="btn2" mnemonicParsing="false" onAction="#abrirBusquedaAvanzada" prefHeight="25.0" prefWidth="200.0" text="Busqueda Avanzada" VBox.vgrow="ALWAYS" />
                   <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>

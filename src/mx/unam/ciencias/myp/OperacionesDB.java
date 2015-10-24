@@ -42,6 +42,41 @@ public class OperacionesDB{
         return lista;
     }
 
+    public static LinkedList<Jugador> consultaRapida(String instruccion)throws Exception{
+        LinkedList<Jugador> lista=new LinkedList<Jugador>();
+        Class.forName("org.sqlite.JDBC");
+        Connection connection = null;
+        ResultSet rs=null;
+        try {
+          // create a database connection
+          connection=DriverManager.getConnection("jdbc:sqlite:football.db");   //RUTA A LA BASE
+          Statement statement=connection.createStatement();
+          statement.setQueryTimeout(30);
+          rs = statement.executeQuery(instruccion);
+          while(rs.next())
+            lista.add(new Jugador(rs.getString("Imagen"),rs.getString("Nombre"),rs.getInt("FechaNacimiento"),rs.getString("Pais"),rs.getString("Posicion"),rs.getString("EquipoActual")));
+        }
+        catch(SQLException e)
+        {
+          System.err.println(e.getMessage());
+        }
+        finally
+        {
+          try
+          {
+            if(connection != null)
+              connection.close();
+          }
+          catch(SQLException e)
+          {
+            System.err.println(e);
+          }
+        }
+        return lista;
+    }
+
+
+
     public static boolean agregaGeneral(String instruccion)throws Exception{
         Class.forName("org.sqlite.JDBC");
         Connection connection = null;
@@ -73,4 +108,6 @@ public class OperacionesDB{
         }
         return true;
     }
+
+
 }
